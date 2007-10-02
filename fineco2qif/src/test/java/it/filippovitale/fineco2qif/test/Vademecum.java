@@ -15,7 +15,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class ParametrizedTestExample {
+public class Vademecum {
 
 	private int param;
 	private int result;
@@ -26,7 +26,7 @@ public class ParametrizedTestExample {
 				{ 4, 16 }, { 5, 25 }, { 6, 36 }, { 7, 49 } });
 	}
 
-	public ParametrizedTestExample(int param, int result) {
+	public Vademecum(int param, int result) {
 		this.param = param;
 		this.result = result;
 	}
