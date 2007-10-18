@@ -10,6 +10,7 @@ import org.junit.Test;
 public class MainTest {
 
 	@Test
+	@Ignore("not implemented yet") 
 	public void assertThatTest() {
 		assertThat(true, is(true));
 		assert true;
