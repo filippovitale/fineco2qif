@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE document PUBLIC "-//Apache Software Foundation//DTD XDOC 1.0//EN" "http://maven.apache.org/dtd/xdoc_1_0.dtd">
+<document>
+	<properties>
+		<title>Project Requirement</title>
+	</properties>
+	<body>
+		<section name="Objective">
+		<ul>
+			<li>
+				<p>avoid duplicates: cc monthly transaction === bank reconciliation</p>
+			</li>
+			<li>
+				<p>A Fineco Credit Card statement is a single transaction (monthly) with a split for every payment?</p>
+			</li>
+		</ul>
+		</section>
+	</body>
+</document>
