@@ -15,19 +15,23 @@
    limitations under the License. 
  -->
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
-  <bean id="statement" class="it.filippovitale.fineco2qif.model.QIFStatement">
-  	<constructor-arg value="BANK_ACCOUNT_STATEMENT" />
-    <!-- property name="transactions">
-      <list>
-        <ref bean="transactionA" />
-        <ref bean="transactionB"  />
-        <ref bean="transactionC"  />
-      </list>
-    </property -->
-  </bean>
+    <bean id="creditcardStatement" class="it.filippovitale.fineco2qif.model.QIFStatement">
+        <constructor-arg value="CREDIT_CARD_STATEMENT"/>
+    </bean>
+
+    <bean id="bankaccountStatement" class="it.filippovitale.fineco2qif.model.QIFStatement">
+        <constructor-arg value="BANK_ACCOUNT_STATEMENT"/>
+        <!-- property name="transactions">
+         <list>
+           <ref bean="transactionA" />
+           <ref bean="transactionB"  />
+           <ref bean="transactionC"  />
+         </list>
+       </property -->
+    </bean>
 
 </beans>

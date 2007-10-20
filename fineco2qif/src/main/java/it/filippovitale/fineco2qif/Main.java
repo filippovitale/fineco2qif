@@ -16,17 +16,32 @@
 package it.filippovitale.fineco2qif;
 
 import it.filippovitale.fineco2qif.model.QIFStatement;
-
+import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.net.URL;
+
 public class Main {
+    private static final String LOG4J_CONFIGURATION_FILENAME = "log4j.xml";
+    private static final Logger log = Logger.getLogger(Main.class);
 
-	public static void main(String[] args) {
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("fineco2qif.xml");
-		QIFStatement statement = (QIFStatement) ctx.getBean("statement");
+    public static void main(String[] args) {
+        init();
 
-		System.out.println(statement.toString());
-	}
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("fineco2qif.xml");
+        QIFStatement statement = (QIFStatement) ctx.getBean("bankaccountStatement");
+
+        log.info("-------------------- BEGIN --------------------\n" + statement.toString());
+        log.info("--------------------  END  --------------------");
+    }
+
+    private static void init() {
+        URL resource = Thread.currentThread().getContextClassLoader().getResource(LOG4J_CONFIGURATION_FILENAME);
+        if (resource != null) {
+            DOMConfigurator.configure(resource);
+        }
+    }
 
 }
