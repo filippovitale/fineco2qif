@@ -20,9 +20,7 @@ import static it.filippovitale.fineco2qif.model.QIFConstantString.*;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class QIFTransaction {
 
@@ -37,7 +35,6 @@ public class QIFTransaction {
     private String memo;
     private String account;
     private String category;
-    private List<QIFSplit> splits = new ArrayList<QIFSplit>();
 
 // -------------------------------------------------------------------------
 
@@ -119,14 +116,6 @@ public class QIFTransaction {
     }
 
     // -------------------------------------------------------------------------
-
-    public List<QIFSplit> getSplits() {
-        return splits;
-    }
-
-    public void setSplits(List<QIFSplit> splits) {
-        this.splits = splits;
-    }
 
     public Date getDate() {
         return date;
