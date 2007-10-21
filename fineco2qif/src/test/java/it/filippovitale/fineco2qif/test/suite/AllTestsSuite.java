@@ -15,11 +15,12 @@
  */
 package it.filippovitale.fineco2qif.test.suite;
 
-import it.filippovitale.fineco2qif.test.model.QIFStatementIdentifierTest;
+import it.filippovitale.fineco2qif.test.model.QIFStatementTest;
+import it.filippovitale.fineco2qif.test.model.QIFTransactionTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({QIFStatementIdentifierTest.class})
+@Suite.SuiteClasses({QIFStatementTest.class, QIFTransactionTest.class})
 public class AllTestsSuite {
 }

@@ -15,48 +15,67 @@
  */
 package it.filippovitale.fineco2qif.model;
 
+import static it.filippovitale.fineco2qif.model.QIFConstantString.STATEMENT_HEADER_BANK_ACCOUNT;
+import static it.filippovitale.fineco2qif.model.QIFConstantString.STATEMENT_HEADER_CREDIT_CARD;
+
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class QIFStatement {
 
-	private QIFStatementIdentifier identifier;
-	private List<QIFTransaction> transactions = new ArrayList<QIFTransaction>();
+    private Type type;
+    private List<QIFTransaction> transactions = new ArrayList<QIFTransaction>();
 
-	// -------------------------------------------------------------------------
-	
-	public QIFStatement(QIFStatementIdentifier identifier) {
-		this.identifier = identifier;
-	}
-	
-	public String toString() {
-		StringBuffer qifStatementRepresentation = new StringBuffer();
+    // -------------------------------------------------------------------------
 
-		qifStatementRepresentation.append(identifier);
-		for (QIFTransaction transaction : transactions) {
-			qifStatementRepresentation.append(transaction);
-		}
-		
-		return qifStatementRepresentation.toString();
-	}
+    public static enum Type {
+        BANK_ACCOUNT(STATEMENT_HEADER_BANK_ACCOUNT),
+        CREDIT_CARD(STATEMENT_HEADER_CREDIT_CARD);
 
-	
-	// -------------------------------------------------------------------------
+        private final String qifRepresentation;
 
-	public QIFStatementIdentifier getIdentifier() {
-		return identifier;
-	}
+        Type(String qifRepresentation) {
+            this.qifRepresentation = qifRepresentation;
+        }
 
-	public void setIdentifier(QIFStatementIdentifier identifier) {
-		this.identifier = identifier;
-	}
+        public String toString() {
+            return qifRepresentation;
+        }
+    }
 
-	public List<QIFTransaction> getTransactions() {
-		return transactions;
-	}
+    // -------------------------------------------------------------------------
 
-	public void setTransactions(List<QIFTransaction> transactions) {
-		this.transactions = transactions;
-	}
+    public QIFStatement(Type type) {
+        this.type = type;
+    }
 
+    public String toString() {
+        StringBuffer qifStatementRepresentation = new StringBuffer();
+
+        qifStatementRepresentation.append(type);
+        for (QIFTransaction transaction : transactions) {
+            qifStatementRepresentation.append(transaction);
+        }
+
+        return qifStatementRepresentation.toString();
+    }
+
+    // -------------------------------------------------------------------------
+
+    public Type getIdentifier() {
+        return type;
+    }
+
+    public void setIdentifier(Type type) {
+        this.type = type;
+    }
+
+    public List<QIFTransaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<QIFTransaction> transactions) {
+        this.transactions = transactions;
+    }
 }

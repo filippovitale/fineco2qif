@@ -15,20 +15,19 @@
  */
 package it.filippovitale.fineco2qif.test.model;
 
+import it.filippovitale.fineco2qif.model.QIFStatement;
 import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.containsString;
-import it.filippovitale.fineco2qif.model.QIFStatementIdentifier;
-
 import org.junit.Test;
+import static org.junit.matchers.JUnitMatchers.containsString;
 
-public class QIFStatementIdentifierTest {
+public class QIFStatementTest {
 
-	@Test
-	public void assertEveryRepresentationStartWithExclamation() {
-		for (QIFStatementIdentifier si : QIFStatementIdentifier.values()) {
-			assertThat(si.toString(), containsString("!Type:"));
-		}
-	}
+    @Test
+    public void assertEveryRepresentationStartWithExclamation() {
+        for (QIFStatement.Type si : QIFStatement.Type.values()) {
+            assertThat(si.toString(), containsString("!Type:"));
+        }
+    }
 
 
 }

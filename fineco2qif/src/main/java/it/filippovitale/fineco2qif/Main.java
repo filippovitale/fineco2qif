@@ -30,7 +30,7 @@ public class Main {
     public static void main(String[] args) {
         init();
 
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("fineco2qif.xml");
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("fineco2qif.xml"); // that's just a sample
         QIFStatement statement = (QIFStatement) ctx.getBean("bankaccountStatement");
 
         log.info("-------------------- BEGIN --------------------\n" + statement.toString());
@@ -41,6 +41,8 @@ public class Main {
         URL resource = Thread.currentThread().getContextClassLoader().getResource(LOG4J_CONFIGURATION_FILENAME);
         if (resource != null) {
             DOMConfigurator.configure(resource);
+        } else {
+            System.err.println("Log4J config file \"" + LOG4J_CONFIGURATION_FILENAME + "\" not found");
         }
     }
 

@@ -46,7 +46,7 @@ translate the Type: tags into the local language.  But not always.
 
 Account Information Format
 --------------------------
-The below typically follow an !Account identifier, and provide account
+The below typically follow an !Account type, and provide account
 data. 
 
 Letter Definition

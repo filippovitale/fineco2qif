@@ -20,18 +20,39 @@
     http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
     <bean id="creditcardStatement" class="it.filippovitale.fineco2qif.model.QIFStatement">
-        <constructor-arg value="CREDIT_CARD_STATEMENT"/>
+        <constructor-arg value="CREDIT_CARD"/>
     </bean>
 
     <bean id="bankaccountStatement" class="it.filippovitale.fineco2qif.model.QIFStatement">
-        <constructor-arg value="BANK_ACCOUNT_STATEMENT"/>
-        <!-- property name="transactions">
-         <list>
-           <ref bean="transactionA" />
-           <ref bean="transactionB"  />
-           <ref bean="transactionC"  />
-         </list>
-       </property -->
+        <constructor-arg value="BANK_ACCOUNT"/>
+        <property name="transactions">
+            <list>
+                <ref bean="transactionA"/>
+                <ref bean="transactionB"/>
+                <ref bean="transactionC"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="date1" class="java.util.Date"/>
+
+    <bean id="transactionA" class="it.filippovitale.fineco2qif.model.QIFTransaction">
+        <constructor-arg ref="date1"/>
+        <constructor-arg value="100.00"/>
+    </bean>
+
+    <bean id="transactionB" class="it.filippovitale.fineco2qif.model.QIFTransaction">
+        <constructor-arg ref="date1"/>
+        <constructor-arg value="100.00"/>
+    </bean>
+
+    <bean id="transactionC" class="it.filippovitale.fineco2qif.model.QIFTransaction">
+        <constructor-arg ref="date1"/>
+        <constructor-arg value="100.00"/>
+        <property name="clearedStatus" value="CLEARED"/>
+        <property name="payee" value="payee1"/>
+        <property name="memo" value="memo1"/>
+        <property name="category" value="category1"/>
     </bean>
 
 </beans>
