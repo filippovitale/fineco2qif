@@ -7,7 +7,7 @@
         </layout>
     </appender>
     <logger name="it.filippovitale">
-        <level value="debig"/>
+        <level value="debug"/>
     </logger>
     <logger name="org.springframework">
         <level value="warn"/>
