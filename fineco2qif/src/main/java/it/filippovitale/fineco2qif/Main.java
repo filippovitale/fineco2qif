@@ -33,8 +33,8 @@ public class Main {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("fineco2qif.xml"); // that's just a sample
         QIFStatement statement = (QIFStatement) ctx.getBean("bankaccountStatement");
 
-        log.info("-------------------- BEGIN --------------------\n" + statement.toString());
-        log.info("--------------------  END  --------------------");
+        log.info("--- BEGIN ---\n" + statement.toString());
+        log.info("---  END  ---");
     }
 
     private static void init() {
