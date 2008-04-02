@@ -60,7 +60,12 @@ public class QIFTransaction {
         this.amount = amount;
     }
 
-    public String toString() {
+    public QIFTransaction(Date date, Double amount, String memo) {
+    	this(date, amount);
+    	this.memo = memo;
+	}
+
+	public String toString() {
         StringBuffer qifTransactionRepresentation = new StringBuffer();
 
         qifTransactionRepresentation.append(TRANSACTION_DATE_PREFIX);

@@ -15,8 +15,7 @@
  */
 package it.filippovitale.fineco2qif.model;
 
-import static it.filippovitale.fineco2qif.model.QIFConstantString.STATEMENT_HEADER_BANK_ACCOUNT;
-import static it.filippovitale.fineco2qif.model.QIFConstantString.STATEMENT_HEADER_CREDIT_CARD;
+import static it.filippovitale.fineco2qif.model.QIFConstantString.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +24,7 @@ import java.util.List;
 public class QIFStatement {
 
     private Type type;
+	private String accountName = null;
     private List<QIFTransaction> transactions = new ArrayList<QIFTransaction>();
 
     // -------------------------------------------------------------------------
@@ -50,9 +50,20 @@ public class QIFStatement {
         this.type = type;
     }
 
+    public QIFStatement(Type type, String accountName) {
+        this.type = type;
+        this.accountName = accountName;
+    }
+
     public String toString() {
         StringBuffer qifStatementRepresentation = new StringBuffer();
 
+        if(accountName!=null) {
+        	qifStatementRepresentation.append(STATEMENT_HEADER_ACCOUNT_NAME);
+            qifStatementRepresentation.append(STATEMENT_HEADER_ACCOUNT_NAME_PREFIX).append(accountName).append(EOL);
+            qifStatementRepresentation.append(STATEMENT_HEADER_ACCOUNT_NAME_FOOTER).append(EOL);
+        }
+        
         qifStatementRepresentation.append(type);
         for (QIFTransaction transaction : transactions) {
             qifStatementRepresentation.append(transaction);

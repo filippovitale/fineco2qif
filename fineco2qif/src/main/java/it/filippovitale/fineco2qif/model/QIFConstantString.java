@@ -19,6 +19,10 @@ public class QIFConstantString {
 
     public static final String EOL = "\r\n";
 
+    public static final String STATEMENT_HEADER_ACCOUNT_NAME = "!Account" + EOL;
+    public static final String STATEMENT_HEADER_ACCOUNT_NAME_PREFIX = "N";
+    public static final String STATEMENT_HEADER_ACCOUNT_NAME_FOOTER = "^";
+
     public static final String STATEMENT_HEADER_BANK_ACCOUNT = "!Type:Bank" + EOL;
     public static final String STATEMENT_HEADER_CREDIT_CARD = "!Type:CCard" + EOL;
 
