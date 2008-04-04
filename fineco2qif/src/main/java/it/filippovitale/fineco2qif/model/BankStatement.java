@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package it.filippovitale.fineco2qif.model;
 
 import it.filippovitale.fineco2qif.logic.ExcelSheetAnalysisLogic;
@@ -21,13 +20,10 @@ import it.filippovitale.fineco2qif.logic.ExcelSheetAnalysisLogic;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 
-public class BankStatement {
-    private static final Logger log = Logger.getLogger(BankStatement.class);
-
+public class BankStatement extends Statement {
     public static final int		BANK_ACCOUNT_NUMBER_ROW = 0;
     public static final short	BANK_ACCOUNT_NUMBER_COLUMN = 0;
     public static final String	BANK_ACCOUNT_NUMBER_PREFIX = "Conto Corrente n. ";
@@ -56,38 +52,32 @@ public class BankStatement {
     public static final String	ACCOUNT_NAME_PHONE_BILL = "Telefono";
     public static final String	ACCOUNT_NAME_CREDIT_CARD = "VISA Fineco";
 
-    private HSSFSheet sheet;
-    
     private String bankNumber;
     private String bankOwner;
-    private List<BankTransaction> transactions = new ArrayList<BankTransaction>();
+    private List<BankTransaction> transactions;
     
     public BankStatement(HSSFSheet sheet) {
-    	this.sheet = sheet;
-
-		if(sheet==null) {
-            log.warn("The sheet is null!");
-		} else {
-	    	populateMetadata();
-	    	populateTransaction();
-		}    	
+    	super(sheet);
     }
     
-    private void populateMetadata() {
+    protected void populateMetadata() {
     	String bankNumberCellValue = ExcelSheetAnalysisLogic.getCellStringValue(sheet, BANK_ACCOUNT_NUMBER_ROW, BANK_ACCOUNT_NUMBER_COLUMN);
 		if(bankNumberCellValue.startsWith(BANK_ACCOUNT_NUMBER_PREFIX)) {
 			bankNumber = bankNumberCellValue.substring(BANK_ACCOUNT_NUMBER_PREFIX.length());
+			bankNumber = bankNumber!=null ? bankNumber.trim() : "";
 			log.debug("credit card number = " + bankNumber);
 		}
     	
 		String bankOwnerCellValue = ExcelSheetAnalysisLogic.getCellStringValue(sheet, BANK_ACCOUNT_OWNER_ROW, BANK_ACCOUNT_OWNER_COLUMN);
 		if(bankOwnerCellValue.startsWith(BANK_ACCOUNT_OWNER_PREFIX)) {
 			bankOwner = bankOwnerCellValue.substring(BANK_ACCOUNT_OWNER_PREFIX.length());
+			bankOwner = bankOwner!=null ? bankOwner.trim() : "";
 			log.debug("credit card owner = " + bankOwner);
 		}
     }
     
-    private void populateTransaction() {
+    protected void populateTransaction() {
+    	transactions = new ArrayList<BankTransaction>();
 		for (int i = 0; i <= sheet.getLastRowNum() - TRANSACTION_START_ROW ; i++) {
 			HSSFRow cellRow = sheet.getRow(TRANSACTION_START_ROW + i);
 

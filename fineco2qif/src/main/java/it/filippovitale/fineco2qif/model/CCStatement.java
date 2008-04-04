@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package it.filippovitale.fineco2qif.model;
 
 import it.filippovitale.fineco2qif.logic.ExcelSheetAnalysisLogic;
@@ -21,13 +20,10 @@ import it.filippovitale.fineco2qif.logic.ExcelSheetAnalysisLogic;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 
-public class CCStatement {
-    private static final Logger log = Logger.getLogger(CCStatement.class);
-
+public class CCStatement extends Statement {
     public static final int		NUMERO_CC_ROW = 0;
     public static final short	NUMERO_CC_COLUMN = 0;
     public static final String	NUMERO_CC_PREFIX = "Carta di credito n. ";
@@ -58,24 +54,15 @@ public class CCStatement {
 	private static final String ACCOUNT_NAME_DEFAULT = "Uscite";
 
 
-    private HSSFSheet sheet;
-    
     private String ccNumber;
     private String ccOwner;
     private List<CCTransaction> transactions;
     
     public CCStatement(HSSFSheet sheet) {
-    	this.sheet = sheet;
+		super(sheet);
+	}
 
-		if(sheet==null) {
-            log.warn("The sheet is null!");
-		} else {
-	    	populateMetadata();
-	    	populateTransaction();
-		}    	
-    }
-    
-    private void populateMetadata() {
+    protected void populateMetadata() {
     	String ccNumberCellValue = ExcelSheetAnalysisLogic.getCellStringValue(sheet, NUMERO_CC_ROW, NUMERO_CC_COLUMN);
 		if(ccNumberCellValue.startsWith(NUMERO_CC_PREFIX)) {
 			ccNumber = ccNumberCellValue.substring(NUMERO_CC_PREFIX.length());
@@ -89,7 +76,7 @@ public class CCStatement {
 		}
     }
     
-    private void populateTransaction() {
+    protected void populateTransaction() {
     	transactions = new ArrayList<CCTransaction>();
 		
 		for (int i = 0; i <= sheet.getLastRowNum() - TRANSACTION_START_ROW ; i++) {
