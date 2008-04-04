@@ -24,6 +24,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -81,5 +82,11 @@ public class Vademecum {
 		int paramsquare = param * (param - 1) + param;
 		assertEquals(result, paramsquare);
 	}
-
+	
+	@Test(timeout=20, expected=RuntimeException.class)
+	@Ignore("not implemented yet") 
+    public void importCreditcardSample1() {
+		throw new RuntimeException("not implemented yet"); 
+    }
+	
 }

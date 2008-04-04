@@ -13,15 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package it.filippovitale.fineco2qif.test.suite;
+package it.filippovitale.fineco2qif.model;
 
-import it.filippovitale.fineco2qif.test.importer.cc.FinecoCCStatementTestcase1;
-import it.filippovitale.fineco2qif.test.model.QIFStatementTest;
-import it.filippovitale.fineco2qif.test.model.QIFTransactionTest;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.apache.log4j.Logger;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({QIFStatementTest.class, QIFTransactionTest.class, FinecoCCStatementTestcase1.class})
-public class AllTestsSuite {
+public abstract class Statement {
+
+	protected HSSFSheet sheet;
+	protected static final Logger log = Logger.getLogger(Statement.class);
+
+    
+    public Statement(HSSFSheet sheet) {
+    	this.sheet = sheet;
+
+    	if(sheet==null) {
+            log.warn("The sheet is null!");
+		} else {
+	    	populateMetadata();
+	    	populateTransaction();
+		}    	
+    }
+
+    protected abstract void populateMetadata();
+	protected abstract void populateTransaction();
+    
+
 }
