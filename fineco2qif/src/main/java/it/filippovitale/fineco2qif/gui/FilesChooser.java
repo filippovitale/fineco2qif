@@ -35,8 +35,6 @@ import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.GenericApplicationContext;
 
 public class FilesChooser extends JFrame {
     private static final String LOG4J_CONFIGURATION_FILENAME = "log4j.xml";
@@ -157,8 +155,7 @@ public class FilesChooser extends JFrame {
             System.err.println("Log4J config file \"" + LOG4J_CONFIGURATION_FILENAME + "\" not found");
         }
         
-        @SuppressWarnings("unused")
-		ApplicationContext ctx = new GenericApplicationContext();
+		//ApplicationContext ctx = new GenericApplicationContext();
     }
     
 	public static void main(String args[]) {
